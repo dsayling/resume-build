@@ -28,6 +28,21 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_GIST_PAT }}
         run: gh gist view 1d37721f321070f6018947bfc4a8e9a5 -r | tee resume.json
 
-      - name: Echo resume
-        run: echo $(cat resume.json)
+      - name: Install resume build
+        run: npm install -g resumed jsonresume-theme-kendall
+
+      - name: Build resume
+        run: |
+          resumed --theme jsonresume-theme-kendall
+
+      - uses: actions/upload-artifact@v4
+        name: Save HTML
+        with:
+          name: resume.html
+          path: resume.html
+
+    
+
+
+    
 
