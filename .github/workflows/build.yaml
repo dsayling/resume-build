@@ -29,5 +29,5 @@ jobs:
         run: gh gist view 1d37721f321070f6018947bfc4a8e9a5 -r | tee resume.json
 
       - name: Echo resume
-        run: echo resume.json
+        run: echo $(cat resume.json)
 
